@@ -5,20 +5,17 @@
 library(here)
 source(here("manuscript", "01_data_prep.R"))
 
-# velo_df <- tracking_runs |>
-#   left_join(select(plays, gameId:ballCarrierId)) |>
-#   filter(nflId == ballCarrierId) |>
-#   filter(gameId == 2022091108, playId == 1333) |>
-#   select(Frame = frameId,
-#          Velocity = s_x) |>
-#   mutate(Velocity = round(Velocity, 3))
-# 
-# write_csv(velo_df, here("data", "velo.csv"))
-
+velo_df <- tracking_runs |>
+  left_join(select(plays, gameId:ballCarrierId)) |>
+  filter(nflId == ballCarrierId) |>
+  filter(gameId == 2022091108, playId == 1333) |>
+  select(Frame = frameId,
+         Velocity = s_x) |>
+  mutate(Velocity = round(Velocity, 3))
 
 ggplot() +
   geom_rect(aes(xmin = c(38, 47, 52), xmax = c(41, 50, 64), ymin = -Inf, ymax = Inf), fill = "#FFD70099") +
-  geom_line(data = read_csv(here("data", "velo.csv")), 
+  geom_line(data = velo_df, 
             aes(Frame, Velocity), linewidth = 0.4, alpha = 0.8) +
   labs(x = "Frame", y = "Velocity toward the end zone") +
   geom_vline(xintercept = 45, linetype = "dashed", linewidth = 0.5) +
@@ -125,52 +122,11 @@ tackles_first_last <- tackles |>
     position %in% c("DB", "SS", "FS", "CB") ~ "Defensive backs"
   ))
 
-tackles_first_last |> 
-  mutate(type = "Total tackles + assists / 2") |> 
-  bind_rows(
-    total_mft_first_last |> 
-      mutate(type = "Total MFTs")
-  ) |> 
-  ggplot(aes(first, last, color = pos_group)) +
-  geom_point(alpha = 0.6, size = 2.5) +
-  scale_color_manual(values = c("#1E88E5", "#FFC107", "#004D40")) +
-  facet_grid(vars(type), vars(pos_group), scales = "free") +
-  theme(legend.position = "none") +
-  labs(x = "First 4 weeks",
-       y = "Last 5 weeks") +
-  theme(axis.title = element_text(size = 17, family = "Chivo"),
-        strip.text = element_text(size = 17, family = "Chivo"),
-        axis.text = element_text(size = 14, family = "Chivo"))
-
-
-
-
-
-
-
-
-
-
-
-# 0.691
-cor(total_mft_first_last$first, 
-    total_mft_first_last$last,
-    use = "complete.obs")
-
-total_mft_first_last |> 
-  ggplot(aes(first, last)) +
-  geom_point(aes(color = pos_group), alpha = 0.6, size = 1.2) +
-  scale_color_manual(values = c("#1E88E5", "#FFC107", "#004D40")) +
-  theme(legend.position = "bottom") +
-  labs(color = "Position",
-       x = "Total MFTs (first 4 weeks)",
-       y = "Total MFTs (last 5 weeks)") +
-  facet_wrap(~ pos_group)
 
 tackles_first_last |>
   mutate(type = "Total tackles + assists/2") |>
   bind_rows(
-    total_mft_first_last |>
+    total_ft_first_last |>
       mutate(type = "Total fractional tackles")
   ) |> 
   mutate(facet = pos_group) |> 
