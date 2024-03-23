@@ -1,11 +1,15 @@
 # tackle
 
-## About
+Repository for the paper "Fractional Tackles: Leveraging Player Tracking Data for
+Within-Play Tackling Evaluation in American Football"
 
-**Title:** Fractional Tackles: Leveraging Player Tracking Data for
-Within-Play Tackling Evaluation in American Football
+## Code
 
-**Abstract:** Tackling is a fundamental defensive move in American football, with the main
+To reproduce the results in the paper, run the scripts in the `manuscript` directory.
+
+## Abstract
+
+Tackling is a fundamental defensive move in American football, with the main
 purpose of stopping the forward motion of the ball-carrier. However, current tackling
 metrics are manually recorded outcomes that are inherently flawed due to their discrete
 and subjective nature. Using player tracking data, we present a novel framework for
