@@ -5,7 +5,9 @@ Within-Play Tackling Evaluation in American Football"
 
 ## Code
 
-To reproduce the results in the paper, run the scripts in the `manuscript` directory.
+First, see the `data` folder for instructions on how to get the data.
+
+To reproduce the results in the paper, run the scripts in the `manuscript` folder.
 
 ## Abstract
 
