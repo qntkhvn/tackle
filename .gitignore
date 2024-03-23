@@ -52,7 +52,8 @@ po/*~
 rsconnect/
 
 # Ignore data uploaded
-# data/
+data/
+ucsas/
 
 # Derivative files
 **/*.DS_Store
@@ -62,4 +63,5 @@ rsconnect/
 **/*.aux
 **/*.out
 **/*.html
+
 
