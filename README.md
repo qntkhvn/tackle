@@ -28,5 +28,5 @@ the capabilities of player tracking data.
 
 ## Links
 
-* [arXiv preprint](TBD)
-* [2024 NFL Big Data Bowl Submission](https://www.kaggle.com/code/tindata/momentum-based-fractional-tackles)
+* [arXiv preprint](https://arxiv.org/abs/2403.14769)
+* [Kaggle notebook](https://www.kaggle.com/code/tindata/momentum-based-fractional-tackles) ([*2024 NFL Big Data Bowl Finalist*](https://www.nfl.com/news/nfl-announces-finalists-for-sixth-annual-big-data-bowl))
